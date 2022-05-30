@@ -1,0 +1,29 @@
+@model ConfirmModel
+
+@{
+    ViewData["Title"] = "Confirm Signup Form";
+}
+
+<div class="row col-md-6">
+    <form method="Post" asp-controller="Accounts" asp-action="Confirm">
+        <h4>Confirm new account</h4>
+        <hr />
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Code"></label>
+            <input asp-for="Code" class="form-control" />
+            <span asp-validation-for="Code" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-1">Submit</button>
+        <button type="submit" class="btn btn-primary mt-1" asp-action="ReSendConfirmationCode">Resend</button>
+    </form>
+</div>

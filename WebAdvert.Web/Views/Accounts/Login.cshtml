@@ -1,0 +1,40 @@
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Login Form";
+}
+
+<div class="row col-md-6">
+    <form method="Post" asp-controller="Accounts" asp-action="Login">
+        <h4>Login to your account</h4>
+        <h5>
+            <a asp-controller="Accounts" asp-action="Signup">
+                Singup from here
+            </a>
+        </h5>
+        <hr />
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox">
+                <input asp-for="RememberMe" />
+                @Html.DisplayName("Remember Me")
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-1">Login</button>
+    </form>
+</div>

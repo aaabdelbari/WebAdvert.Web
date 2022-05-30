@@ -1,5 +1,24 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCognitoIdentity(config =>
+{
+    config.Password = new Microsoft.AspNetCore.Identity.PasswordOptions
+    {
+        RequireDigit = false,
+        RequiredLength = 6,
+        RequireUppercase = false,
+        RequireLowercase = false,
+        RequiredUniqueChars = 0,
+        RequireNonAlphanumeric = false
+    };
+
+});
+
+builder.Services.ConfigureApplicationCookie(config =>
+{
+    config.LoginPath = "/Accounts/Login";
+});
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -18,6 +37,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
